@@ -1,4 +1,6 @@
 # ESPEasy
+# Fork with new parameters for the PWM Module
+
 Easy MultiSensor device based on ESP8266
 
 This is where development takes place. Beware that latest versions may be unstable.
