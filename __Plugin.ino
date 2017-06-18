@@ -1100,6 +1100,7 @@ byte PluginCall(byte Function, struct EventStruct *event, String& str)
     // Call to all plugins that are used in a task
     case PLUGIN_ONCE_A_SECOND:
     case PLUGIN_TEN_PER_SECOND:
+    case PLUGIN_FOURTY_PER_SECOND:
     case PLUGIN_INIT_ALL:
     case PLUGIN_CLOCK_IN:
     case PLUGIN_EVENT_OUT:

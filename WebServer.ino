@@ -55,6 +55,7 @@ void addHeader(boolean showMenu, String& str)
   str += F("<script language=\"javascript\"><!--\n");
   str += F("function dept_onchange(frmselect) {frmselect.submit();}\n");
   str += F("//--></script>");
+  str += F("<script src=\"jscolor.min.js\"></script>\n");
   str += F("<head><title>");
   str += Settings.Name;
   str += F("</title>");
@@ -2187,6 +2188,8 @@ bool loadFromSPIFFS(String path) {
 
   if (path.endsWith(".txt"))
     WebServer.sendHeader("Content-Disposition", "attachment;");
+  if (path.endsWith(".js"))      
+    WebServer.sendHeader("Cache-Control: max-age=3600", "must-revalidate"); 
   WebServer.streamFile(dataFile, dataType);
 
   dataFile.close();

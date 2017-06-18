@@ -120,7 +120,7 @@
 #define VERSION                             9
 #define BUILD                             148
 #define BUILD_NOTES                        ""
-#define FEATURE_SPIFFS                  false
+#define FEATURE_SPIFFS                   true
 
 #define NODE_TYPE_ID_ESP_EASY_STD           1
 #define NODE_TYPE_ID_ESP_EASYM_STD         17
@@ -194,6 +194,7 @@
 #define PLUGIN_READ                         3
 #define PLUGIN_ONCE_A_SECOND                4
 #define PLUGIN_TEN_PER_SECOND               5
+#define PLUGIN_FOURTY_PER_SECOND            99
 #define PLUGIN_DEVICE_ADD                   6
 #define PLUGIN_EVENTLIST_ADD                7
 #define PLUGIN_WEBFORM_SAVE                 8
@@ -458,6 +459,7 @@ unsigned long RulesTimer[RULES_TIMER_MAX];
 unsigned long timerSensor[TASKS_MAX];
 unsigned long timer;
 unsigned long timer100ms;
+unsigned long timer25ms;
 unsigned long timer1s;
 unsigned long timerwd;
 unsigned long lastSend;
@@ -689,7 +691,9 @@ void loop()
 
     if (millis() > timerwd)
       runEach30Seconds();
-
+      
+    if (millis() > timer25ms)
+      run40TimesPerSecond();
     backgroundtasks();
 
   }
@@ -697,6 +701,11 @@ void loop()
     delay(1);
 }
 
+void run40TimesPerSecond()
+{
+  timer25ms = millis() + 25;
+  PluginCall(PLUGIN_FOURTY_PER_SECOND, 0, dummyString);
+}
 
 /*********************************************************************************************\
  * Tasks that run 10 times per second
