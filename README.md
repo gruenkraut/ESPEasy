@@ -1,5 +1,6 @@
 # ESPEasy
 # Fork with new parameters for the PWM Module
+# Add the modules P_121 und P_122 for the WIFI candle
 
 Easy MultiSensor device based on ESP8266
 
